@@ -20,3 +20,17 @@
 /* eslint-env browser, serviceworker, es6 */
 
 'use strict';
+
+self.addEventListener('push', function(event) {
+    console.log('[Service Worker] Push Received.');
+    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+  
+    const title = 'THE FIRST GROUP';
+    const options = {
+      body: 'This is a sample message from The First Group.',
+      icon: 'images/icon.png',
+      badge: 'images/badge.png'
+    };
+  
+    event.waitUntil(self.registration.showNotification(title, options));
+  });
